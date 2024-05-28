@@ -35,16 +35,6 @@ export class AuthController {
     }
   }
 
-  // static async getProfile(req: any, res: any) {
-  //   console.log(req);
-  //   if (req.session.user) {
-  //     // Access user data from session
-  //     const user = req.session.user;
-  //     res.json(user);
-  //   } else {
-  //     res.status(401).json({ message: "Unauthorized" });
-  //   }
-  // }
   static async getProfile(req: Request, res: Response) {
     if (!req[" currentUser"]) {
       return res.status(401).json({ message: "Unauthorized" });
