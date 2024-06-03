@@ -14,7 +14,10 @@ export class Doctor {
   id: string;
 
   @Column({ nullable: false })
-  name: string;
+  firstname: string;
+
+  @Column({ nullable: false })
+  lastname: string;
 
   @Column({ nullable: false })
   position: string;

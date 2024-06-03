@@ -1,3 +1,4 @@
+import { upload } from "./middleware/image.middleware";
 import * as dotenv from "dotenv";
 import * as express from "express";
 import * as session from "express-session";
@@ -8,9 +9,12 @@ import "reflect-metadata";
 import { userRouter } from "./routes/user.routes";
 import { doctorRouter } from "./routes/doctor.routes";
 import { AppDataSource } from "./data-source";
+import { imageRouter } from "./routes/images.routes";
+import path = require("path");
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
 
 // app.use(
@@ -30,6 +34,9 @@ const { PORT = 8080 } = process.env;
 
 app.use("/auth", userRouter);
 app.use("/doctors", doctorRouter);
+app.use("/images", imageRouter);
+
+app.use("/uploads", express.static("uploads"));
 
 AppDataSource.initialize()
   .then(async () => {
