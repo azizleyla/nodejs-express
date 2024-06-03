@@ -25,7 +25,7 @@ export class UserController {
       if (existingUser) {
         return res
           .status(400)
-          .json({ message: "User with this email is already registered" });
+          .json({ message: "User with this email is already exists" });
       } else {
         // Create a new user entity and set its properties
         const user = new User();
@@ -47,6 +47,12 @@ export class UserController {
           role: user.role,
         };
 
+        // res.cookie("token", token, {
+        //   path: "/", // Cookie is accessible from all paths
+        //   expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
+        //   secure: true, // Cookie will only be sent over HTTPS
+        //   httpOnly: true, // Cookie cannot be accessed via client-side scripts
+        // });
         // Return success response with token and user data
         return res.status(201).json({
           message: "User created successfully",
@@ -57,9 +63,7 @@ export class UserController {
     } catch (error) {
       // Handle any errors that occurred during the process
       console.error(error);
-      return res
-        .status(500)
-        .json({ message: "An error occurred while creating the user" });
+      return res.status(400).json({ message: "Invalid user data" });
     }
   }
   static async getUsers(req: Request, res: Response) {

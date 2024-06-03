@@ -6,6 +6,7 @@ import * as cors from "cors";
 
 import "reflect-metadata";
 import { userRouter } from "./routes/user.routes";
+import { doctorRouter } from "./routes/doctor.routes";
 import { AppDataSource } from "./data-source";
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(express.json());
 const { PORT = 8080 } = process.env;
 
 app.use("/auth", userRouter);
+app.use("/doctors", doctorRouter);
 
 AppDataSource.initialize()
   .then(async () => {
