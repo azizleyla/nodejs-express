@@ -9,7 +9,6 @@ import "reflect-metadata";
 import { userRouter } from "./routes/user.routes";
 import { doctorRouter } from "./routes/doctor.routes";
 import { AppDataSource } from "./data-source";
-import { imageRouter } from "./routes/images.routes";
 import path = require("path");
 dotenv.config();
 
@@ -34,8 +33,6 @@ const { PORT = 8080 } = process.env;
 
 app.use("/auth", userRouter);
 app.use("/doctors", doctorRouter);
-app.use("/images", imageRouter);
-
 app.use("/uploads", express.static("uploads"));
 
 AppDataSource.initialize()

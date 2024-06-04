@@ -6,7 +6,6 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
-import { Image } from "./Image";
 
 @Entity({ name: "doctors" })
 export class Doctor {
@@ -22,8 +21,17 @@ export class Doctor {
   @Column({ nullable: false })
   position: string;
 
-  @OneToMany(() => Image, (image) => image.doctor)
-  images: Image[]; // Assuming 'doctor' is the correct property name
+  @Column({ nullable: false })
+  gender: string;
+
+  @Column({ nullable: true })
+  email: string;
+
+  @Column({ nullable: true })
+  img_path: string;
+
+  @Column({ nullable: true })
+  bio: string;
 
   @CreateDateColumn()
   createdAt: Date;

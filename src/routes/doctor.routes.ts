@@ -2,6 +2,7 @@ import * as express from "express";
 import { authorization } from "../middleware/authorization";
 import { authentification } from "../middleware/authentification";
 import { DoctorController } from "../controller/doctor.controller";
+import { upload } from "../middleware/image.middleware";
 
 const Router = express.Router();
 
@@ -14,6 +15,7 @@ Router.get(
 Router.post(
   "/add-doctor",
   authentification,
+  upload.single("img_path"),
   authorization(["admin"]),
   DoctorController.createDoctor,
 );

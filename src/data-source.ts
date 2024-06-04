@@ -4,7 +4,6 @@ import "reflect-metadata";
 import * as dotenv from "dotenv";
 import { User } from "./entity/User";
 import { Doctor } from "./entity/Doctor";
-import { Image } from "./entity/Image";
 
 dotenv.config();
 
@@ -26,7 +25,7 @@ export const AppDataSource = new DataSource({
   database: DB_DATABASE,
   synchronize: true,
   logging: true,
-  entities: [User, Doctor, Image],
+  entities: [User, Doctor],
   migrations: ["src/migrations/**/*.ts"],
   subscribers: [],
 });
