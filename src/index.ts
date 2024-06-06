@@ -1,4 +1,3 @@
-import { upload } from "./middleware/image.middleware";
 import * as dotenv from "dotenv";
 import * as express from "express";
 import * as session from "express-session";
