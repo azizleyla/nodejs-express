@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import { UserResponce } from "../dto/user.dto"; // Import UserDto from the correct path
 import * as cache from "memory-cache";
 import { encrypt } from "../utils/helpers";
-import { User } from "../entity/User";
+import { User } from "../entities/user.entity";
 import { AppDataSource } from "../data-source";
-import { error } from "console";
 
 export class UserController {
   static async signup(req: Request, res: Response) {

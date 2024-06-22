@@ -2,8 +2,6 @@ import { DataSource } from "typeorm";
 import "reflect-metadata";
 
 import * as dotenv from "dotenv";
-import { User } from "./entity/User";
-import { Doctor } from "./entity/Doctor";
 
 dotenv.config();
 
@@ -23,9 +21,9 @@ export const AppDataSource = new DataSource({
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE,
-  synchronize: true,
+  synchronize: false,
   logging: true,
-  entities: [User, Doctor],
+  entities: ["src/entities/**/*.entity{.ts,.js}"],
   migrations: ["src/migrations/**/*.ts"],
   subscribers: [],
 });

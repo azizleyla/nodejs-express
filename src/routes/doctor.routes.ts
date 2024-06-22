@@ -1,30 +1,30 @@
 import * as express from "express";
 import { authorization } from "../middleware/authorization";
 import { authentification } from "../middleware/authentification";
-import { DoctorController } from "../controller/doctor.controller";
 import upload from "../middleware/image.middleware";
+import {
+  createDoctorHandler,
+  deleteDoctorHandler,
+  getDoctors,
+  updateDoctorHandler,
+} from "../controller/doctor.controller";
 
 const Router = express.Router();
 
-Router.get(
-  "/",
-  authentification,
-  authorization(["admin"]),
-  DoctorController.getDoctors,
-);
+Router.get("/", authentification, authorization(["admin"]), getDoctors);
 
 Router.post(
   "/add-doctor",
   authentification,
   authorization(["admin"]),
   upload.single("img_path"),
-  DoctorController.createDoctor,
+  createDoctorHandler,
 );
 Router.delete(
   "/delete/:id",
   authentification,
   authorization(["admin"]),
-  DoctorController.deleteDoctor,
+  deleteDoctorHandler,
 );
 Router.put(
   "/update/:id",
@@ -32,6 +32,6 @@ Router.put(
   authorization(["admin"]),
   upload.single("img_path"), // Add this line to handle form data
 
-  DoctorController.updateDoctor,
+  updateDoctorHandler,
 );
 export { Router as doctorRouter };
