@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as cache from "memory-cache";
-import { encrypt } from "../utils/helpers";
+import { encrypt } from "../../utils/helpers";
 import { User } from "../entities/user.entity";
 import { AppDataSource } from "../data-source";
 
@@ -8,6 +8,8 @@ export class UserController {
   static async signup(req: Request, res: Response) {
     try {
       const { username, email, password, role } = req.body;
+      /*  #swagger.tags = ['User']
+            #swagger.description = 'Endpoint to add a user.' */
 
       // Encrypt the password
       const encryptedPassword = await encrypt.encryptpass(password);

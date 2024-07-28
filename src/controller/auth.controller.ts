@@ -1,11 +1,21 @@
 import { Request, Response } from "express";
-import { encrypt } from "../utils/helpers";
+import { encrypt } from "../../utils/helpers";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entity";
 
 export class AuthController {
-  static async login(req: any, res: Response) {
+  static async login(req: Request, res: Response) {
     try {
+      /* #swagger.tags=['Users']
+       #swagger.requestBody = {
+         required: true,
+         content: {
+           "application/json": {
+             schema: { $ref: "#/definitions/UserLogin" }
+           }
+         }
+       }
+    */
       const { email, password } = req.body;
       if (!email || !password) {
         return res

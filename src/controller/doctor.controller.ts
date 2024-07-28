@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import path = require("path");
-import AppError from "../utils/appError";
+import AppError from "../../utils/appError";
 import { Doctor } from "../entities/doctor.entity";
 import {
   createDoctor,
@@ -80,7 +80,16 @@ export const createDoctorHandler = async (
 ) => {
   try {
     let filePath = req.file?.path;
-
+    const {
+      firstname,
+      lastname,
+      gender,
+      position,
+      email,
+      img_path,
+      bio,
+      created_at,
+    } = req.body;
     if (filePath) {
       filePath = path.posix.normalize(filePath);
     }
